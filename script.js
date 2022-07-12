@@ -10,6 +10,9 @@ window.addEventListener("load", function() {
         if (pilotNameInput.value === "" || copilotNameInput.value === "" || fuelLevelInput.value === "" || cargoMassInput.value === "") {
             alert("All fields are required");
             event.preventDefault();
+        } else {
+            console.log("commence form submission");
+            formSubmission(document, document.getElementById("faultyItems"), pilotNameInput.value, copilotNameInput.value, fuelLevelInput.value, cargoMassInput.value);
         }
     });
 
