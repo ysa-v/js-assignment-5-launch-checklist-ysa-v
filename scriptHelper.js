@@ -31,22 +31,29 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
         alert("Pilot and co-pilot fields must be names, Fuel Level and Cargo Mass fields must be numbers.")
         return;
     }
+    document.getElementById("fuelStatus").innerHTML = "Fuel level high enough for launch";
+    document.getElementById("cargoStatus").innerHTML = "Cargo mass low enough for launch";
     document.getElementById("pilotStatus").innerHTML = `${pilot} Ready`;
     document.getElementById("copilotStatus").innerHTML = `${copilot} Ready`;
     if (Number(fuelLevel) < 10000) {
+        console.log('fuel less than 10000');
         document.getElementById("fuelStatus").innerHTML = "Not enough fuel for the journey";
         document.getElementById("launchStatus").innerHTML = "Shuttle not ready for launch";
         document.getElementById("launchStatus").style.color = "red";
         list.style.visibility = "visible";
-    } else if (Number(cargoLevel) > 10000) {
+    }
+    if (Number(cargoLevel) > 10000) {
         document.getElementById("cargoStatus").innerHTML = "Too much mass for the shuttle to take off";
         document.getElementById("launchStatus").innerHTML = "Shuttle not ready for launch";
         document.getElementById("launchStatus").style.color = "red";
         list.style.visibility = "visible";
-    } else {
+    }
+    if (Number(fuelLevel) >= 10000 && Number(cargoLevel) <= 10000) {
         document.getElementById("launchStatus").innerHTML = "Shuttle is ready for launch";
         document.getElementById("launchStatus").style.color = "green";
+        list.style.visibility = "visible";
     }
+    console.log('Form submission completed?');
 }
 
 async function myFetch() {
@@ -59,6 +66,7 @@ async function myFetch() {
 }
 
 function pickPlanet(planets) {
+    planets[Math.floor(Math.random()*(planets.length)];
 }
 
 // module.exports.addDestinationInfo = addDestinationInfo;
